@@ -1,9 +1,6 @@
 package com.example.importerApp.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
 
@@ -13,37 +10,72 @@ public class Customers {
 
     @GeneratedValue
     @Id
+    @Column(name = "customer_id")
     private Integer customerId;
+    @Column(name = "customer_name")
     private String customerName;
+    @Column(name = "bill_to_customer")
     private Integer billToCustomer;
+    @Column(name = "customer_categoryid")
     private Integer customerCategoryID;
+    @Column(name = "buying_groupid")
     private Integer buyingGroupID;
+    @Column(name = "primary_contact_personid")
     private Integer primaryContactPersonID;
+    @Column(name = "alternate_contact_personid")
     private Integer alternateContactPersonID;
+    @Column(name = "delivery_methodid")
     private Integer deliveryMethodID;
+    @Column(name = "delivery_cityid")
     private Integer deliveryCityID;
+    @Column(name = "postal_cityid")
     private Integer postalCityID;
-    private BigDecimal CreditLimit;
+    @Column(name = "credit_limit")
+    private BigDecimal creditLimit;
+    @Column(name = "account_opened_date")
     private Date accountOpenedDate;
+    @Column(name = "standard_discount_percentage")
     private BigDecimal standardDiscountPercentage;
+    @Column(name = "is_statement_sent")
     private boolean isStatementSent;
+    @Column(name = "is_on_credit_hold")
     private boolean isOnCreditHold;
+    @Column(name = "payment_days")
     private Integer paymentDays;
+    @Column(name = "phone_number")
     private String phoneNumber;
+    @Column(name = "fax_number")
     private String faxNumber;
+    @Column(name = "delivery_run")
     private String deliveryRun;
+    @Column(name = "run_position")
     private String runPosition;
+    @Column(name = "websiteurl")
     private String websiteURL;
+    @Column(name = "delivery_address_line1")
     private String deliveryAddressLine1;
+    @Column(name = "delivery_address_line2")
     private String deliveryAddressLine2;
+    @Column(name = "delivery_postal_code")
     private String deliveryPostalCode;
+    @Column(name = "delivery_location")
     private String deliveryLocation;
+    @Column(name = "postal_address_line1")
     private String postalAddressLine1;
+    @Column(name = "postal_address_line2")
     private String postalAddressLine2;
+    @Column(name = "postal_postal_code")
     private String postalPostalCode;
+    @Column(name = "last_edited_by")
     private Integer lastEditedBy;
+    @Column(name = "valid_from")
     private Date validFrom;
+    @Column(name = "valid_to")
     private Date validTo;
+
+    public Customers(){
+
+    }
 
     public Integer getCustomerId() {
         return customerId;
@@ -125,13 +157,7 @@ public class Customers {
         this.postalCityID = postalCityID;
     }
 
-    public BigDecimal getCreditLimit() {
-        return CreditLimit;
-    }
 
-    public void setCreditLimit(BigDecimal creditLimit) {
-        CreditLimit = creditLimit;
-    }
 
     public Date getAccountOpenedDate() {
         return accountOpenedDate;
@@ -293,6 +319,48 @@ public class Customers {
         this.validTo = validTo;
     }
 
+    public BigDecimal getCreditLimit() {
+        return creditLimit;
+    }
+
+    public void setCreditLimit(BigDecimal creditLimit) {
+        this.creditLimit = creditLimit;
+    }
+
+    public Customers(Integer customerId, String customerName, Integer billToCustomer, Integer customerCategoryID, Integer buyingGroupID, Integer primaryContactPersonID, Integer alternateContactPersonID, Integer deliveryMethodID, Integer deliveryCityID, Integer postalCityID, BigDecimal creditLimit, Date accountOpenedDate, BigDecimal standardDiscountPercentage, boolean isStatementSent, boolean isOnCreditHold, Integer paymentDays, String phoneNumber, String faxNumber, String deliveryRun, String runPosition, String websiteURL, String deliveryAddressLine1, String deliveryAddressLine2, String deliveryPostalCode, String deliveryLocation, String postalAddressLine1, String postalAddressLine2, String postalPostalCode, Integer lastEditedBy, Date validFrom, Date validTo) {
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.billToCustomer = billToCustomer;
+        this.customerCategoryID = customerCategoryID;
+        this.buyingGroupID = buyingGroupID;
+        this.primaryContactPersonID = primaryContactPersonID;
+        this.alternateContactPersonID = alternateContactPersonID;
+        this.deliveryMethodID = deliveryMethodID;
+        this.deliveryCityID = deliveryCityID;
+        this.postalCityID = postalCityID;
+        this.creditLimit = creditLimit;
+        this.accountOpenedDate = accountOpenedDate;
+        this.standardDiscountPercentage = standardDiscountPercentage;
+        this.isStatementSent = isStatementSent;
+        this.isOnCreditHold = isOnCreditHold;
+        this.paymentDays = paymentDays;
+        this.phoneNumber = phoneNumber;
+        this.faxNumber = faxNumber;
+        this.deliveryRun = deliveryRun;
+        this.runPosition = runPosition;
+        this.websiteURL = websiteURL;
+        this.deliveryAddressLine1 = deliveryAddressLine1;
+        this.deliveryAddressLine2 = deliveryAddressLine2;
+        this.deliveryPostalCode = deliveryPostalCode;
+        this.deliveryLocation = deliveryLocation;
+        this.postalAddressLine1 = postalAddressLine1;
+        this.postalAddressLine2 = postalAddressLine2;
+        this.postalPostalCode = postalPostalCode;
+        this.lastEditedBy = lastEditedBy;
+        this.validFrom = validFrom;
+        this.validTo = validTo;
+    }
+
     @Override
     public String toString() {
         return "Customers{" +
@@ -306,7 +374,7 @@ public class Customers {
                 ", deliveryMethodID=" + deliveryMethodID +
                 ", deliveryCityID=" + deliveryCityID +
                 ", postalCityID=" + postalCityID +
-                ", CreditLimit=" + CreditLimit +
+                ", creditLimit=" + creditLimit +
                 ", accountOpenedDate=" + accountOpenedDate +
                 ", standardDiscountPercentage=" + standardDiscountPercentage +
                 ", isStatementSent=" + isStatementSent +
@@ -328,39 +396,5 @@ public class Customers {
                 ", validFrom=" + validFrom +
                 ", validTo=" + validTo +
                 '}';
-    }
-
-    public Customers(Integer customerId, String customerName, Integer billToCustomer, Integer customerCategoryID, Integer buyingGroupID, Integer primaryContactPersonID, Integer alternateContactPersonID, Integer deliveryMethodID, Integer deliveryCityID, Integer postalCityID, BigDecimal creditLimit, Date accountOpenedDate, BigDecimal standardDiscountPercentage, boolean isStatementSent, boolean isOnCreditHold, Integer paymentDays, String phoneNumber, String faxNumber, String deliveryRun, String runPosition, String websiteURL, String deliveryAddressLine1, String deliveryAddressLine2, String deliveryPostalCode, String deliveryLocation, String postalAddressLine1, String postalAddressLine2, String postalPostalCode, Integer lastEditedBy, Date validFrom, Date validTo) {
-        this.customerId = customerId;
-        this.customerName = customerName;
-        this.billToCustomer = billToCustomer;
-        this.customerCategoryID = customerCategoryID;
-        this.buyingGroupID = buyingGroupID;
-        this.primaryContactPersonID = primaryContactPersonID;
-        this.alternateContactPersonID = alternateContactPersonID;
-        this.deliveryMethodID = deliveryMethodID;
-        this.deliveryCityID = deliveryCityID;
-        this.postalCityID = postalCityID;
-        CreditLimit = creditLimit;
-        this.accountOpenedDate = accountOpenedDate;
-        this.standardDiscountPercentage = standardDiscountPercentage;
-        this.isStatementSent = isStatementSent;
-        this.isOnCreditHold = isOnCreditHold;
-        this.paymentDays = paymentDays;
-        this.phoneNumber = phoneNumber;
-        this.faxNumber = faxNumber;
-        this.deliveryRun = deliveryRun;
-        this.runPosition = runPosition;
-        this.websiteURL = websiteURL;
-        this.deliveryAddressLine1 = deliveryAddressLine1;
-        this.deliveryAddressLine2 = deliveryAddressLine2;
-        this.deliveryPostalCode = deliveryPostalCode;
-        this.deliveryLocation = deliveryLocation;
-        this.postalAddressLine1 = postalAddressLine1;
-        this.postalAddressLine2 = postalAddressLine2;
-        this.postalPostalCode = postalPostalCode;
-        this.lastEditedBy = lastEditedBy;
-        this.validFrom = validFrom;
-        this.validTo = validTo;
     }
 }

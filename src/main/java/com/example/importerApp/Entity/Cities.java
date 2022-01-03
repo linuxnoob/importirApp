@@ -1,5 +1,6 @@
 package com.example.importerApp.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,15 +12,26 @@ import java.util.Date;
 public class Cities {
 
     @Id
+    @Column(name = "city_id")
     private Integer cityId;
+    @Column(name = "city_name")
     private String cityName;
+    @Column(name = "state_province_id")
     private Integer stateProvinceId;
+    @Column(name = "location")
     private String location;
+    @Column(name = "latest_recorded_population")
     private Double latestRecordedPopulation;
+    @Column(name = "last_edited_by")
     private Integer lastEditedBy;
+    @Column(name = "valid_from")
     private Date validFrom;
+    @Column(name = "valid_to")
     private Date validTo;
 
+    public Cities(){
+
+    }
     public Cities(Integer cityId, String cityName, Integer stateProvinceId, String location, Double latestRecordedPopulation, Integer lastEditedBy, Date validFrom, Date validTo) {
         this.cityId = cityId;
         this.cityName = cityName;
