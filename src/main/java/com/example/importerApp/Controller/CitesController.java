@@ -13,7 +13,7 @@ public class CitesController {
     @Autowired
     CitiesService citiesService;
 
-    @GetMapping("/cities/getAllCities")
+    @RequestMapping(path = "/cities/getAllCities", method = RequestMethod.GET, produces =  {"application/json"})
     public List<Cities> findAllCities(){
         return this.citiesService.findAllCities();
     }
