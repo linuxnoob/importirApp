@@ -21,6 +21,6 @@ public class CitiesService {
     }
 
     public List<Cities> findCitiesByName(String citesName){
-        return this.findCitiesByName(citesName);
+        return this.citiesRepo.findCityByName(citesName);
     }
 }
