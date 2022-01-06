@@ -9,17 +9,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/supplier")
 public class SupplierController {
 
     @Autowired
     SupplierService supplierService;
 
-    @RequestMapping(path = "/supplier/getAllSupplier", method = RequestMethod.GET, produces =  {"application/json"})
+    @RequestMapping(path = "/getAllSupplier", method = RequestMethod.GET, produces =  {"application/json"})
     public List<Supplier> getAllSupplier(){
         return this.supplierService.getAllSupplier();
     }
 
-    @RequestMapping(path = "/supplier/getSupplierById", method = RequestMethod.GET, produces =  {"application/json"})
+    @RequestMapping(path = "/getSupplierById", method = RequestMethod.GET, produces =  {"application/json"})
     public Supplier getSupplierById(@RequestParam("supplierId") Integer supplierId){
         return this.supplierService.getSupplierById(supplierId);
     }

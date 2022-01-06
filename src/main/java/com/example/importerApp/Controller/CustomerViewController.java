@@ -11,12 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping(path = "/customers/view")
 public class CustomerViewController {
 
     @Autowired
     CustomerViewService customerViewService;
 
-    @RequestMapping(path = "/customers/view/findAllCust", method = RequestMethod.GET ,produces={ "application/json"})
+    @RequestMapping(path = "/findAllCust", method = RequestMethod.GET ,produces={ "application/json"})
     public List<CustomerView> findAllCustView() throws SQLException {
         List<CustomerView> customerViewList = new ArrayList<>();
         try {
@@ -27,7 +28,7 @@ public class CustomerViewController {
         return  customerViewList;
     }
 
-    @RequestMapping(path = "/customers/view/findAllCustByName", method = RequestMethod.GET ,produces={ "application/json"})
+    @RequestMapping(path = "/findAllCustByName", method = RequestMethod.GET ,produces={ "application/json"})
     public List<CustomerView> findAllCustViewByName(@RequestParam("custname") String name) throws SQLException {
         List<CustomerView> customerViewList = new ArrayList<>();
         try {
