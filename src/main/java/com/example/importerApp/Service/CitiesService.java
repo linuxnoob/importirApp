@@ -39,4 +39,40 @@ public class CitiesService {
 
         return citiesList1;
     }
+
+    public Cities saveCities(Cities cities) throws Exception{
+        try {
+            this.citiesRepo.save(cities);
+        }catch (Exception e){
+            System.out.println("message error " + e.getMessage());
+        }
+        return cities;
+    }
+
+    public Cities updateCities(Cities cities) throws  Exception{
+        try {
+            Cities cities1 = this.citiesRepo.findById(cities.getCityId()).orElse(null);
+            if(cities1!=null){
+                this.citiesRepo.save(cities);
+            }
+        }catch (Exception e){
+            System.out.println("msg error " + e.getMessage());
+        }
+        return cities;
+    }
+
+    public Integer deleteCitesById(Integer cityId) throws Exception{
+        try {
+            Cities cities = this.citiesRepo.findById(cityId).orElse(null);
+            if(cities!=null){
+                this.citiesRepo.deleteById(cityId);
+            }else{
+                return Integer.valueOf(1);
+            }
+
+        }catch (Exception e){
+            System.out.println("msg error " +e.getMessage());
+        }
+        return cityId;
+    }
 }
