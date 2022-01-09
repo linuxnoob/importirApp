@@ -2,6 +2,8 @@ package com.example.importerApp.Controller;
 
 import com.example.importerApp.Entity.Cities;
 import com.example.importerApp.Service.CitiesService;
+import net.minidev.json.JSONObject;
+import netscape.javascript.JSObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,27 +40,31 @@ public class CitesController {
     }
 
     @RequestMapping(path = "/updateCities", method = RequestMethod.PUT, produces = {"application/json"} )
-    public Cities updateCities(@RequestBody Cities cities) throws Exception{
+    public ResponseEntity<String> updateCities(@RequestBody Cities cities) throws Exception{
+        Cities cities1 = new Cities();
         try {
-            this.citiesService.updateCities(cities);
+            cities1=this.citiesService.updateCities(cities);
+            if(cities1 == null){
+                return new ResponseEntity<>("update failed ", HttpStatus.BAD_REQUEST);
+            }
         }catch (Exception e){
             System.out.println("msg " + e.getMessage());
         }
-        return cities;
+        return new ResponseEntity<>(" update success " + cities1, HttpStatus.OK);
     }
 
     @RequestMapping(path = "/deleteCities", method = RequestMethod.DELETE, produces = {"application/json"})
-    public Integer deleteCites(@RequestParam("cityId")  Integer cityId) throws Exception{
+    public ResponseEntity<String> deleteCites(@RequestParam("cityId")  Integer cityId) throws Exception{
         Integer i=null;
         try {
             i=this.citiesService.deleteCitesById(cityId);
             if(i==0){
-                return 0;
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         }catch (Exception e) {
             System.out.println("msg error " + e.getMessage());
         }
-        return i;
+        return new ResponseEntity<>("delete success ", HttpStatus.OK);
     }
 }
 

@@ -54,6 +54,8 @@ public class CitiesService {
             Cities cities1 = this.citiesRepo.findById(cities.getCityId()).orElse(null);
             if(cities1!=null){
                 this.citiesRepo.save(cities);
+            }else {
+                return cities1;
             }
         }catch (Exception e){
             System.out.println("msg error " + e.getMessage());
