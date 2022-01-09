@@ -53,4 +53,47 @@ public class CustomersService {
 
         return stringList;
     }
+
+    public Customers saveCustomers(Customers customers) throws Exception{
+        Customers customers1= new Customers();
+        try {
+           customers1 =this.customersRepo.save(customers);
+            System.out.println(customers1);
+        }catch (Exception e){
+            System.out.println("msg error " + e.getMessage());
+        }
+        return customers;
+    }
+
+    public Customers updateCust(Customers customers) throws Exception{
+        Customers cust= new Customers();
+        try {
+            cust = this.customersRepo.getById(customers.getCustomerId());
+            if(cust !=null){
+                this.customersRepo.save(customers);
+            } else {
+                return cust;
+            }
+
+        }catch (Exception e){
+            System.out.println("msg error " + e.getMessage());
+        }
+        return customers;
+    }
+
+    public Integer deleteById(Integer custId) throws Exception{
+        Customers customers = new Customers();
+        try {
+            customers = this.customersRepo.getById(custId);
+            if(customers!=null){
+                this.customersRepo.deleteById(custId);
+            }else{
+                return 1;
+            }
+        }catch (Exception e){
+            System.out.println("msg error " + e.getMessage());
+        }
+        return custId;
+    }
+
 }

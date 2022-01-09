@@ -4,6 +4,8 @@ import com.example.importerApp.Entity.Customers;
 import com.example.importerApp.Service.CustomersService;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,4 +38,28 @@ public class CustomersController {
         System.out.println("name = " +name);
         return customersService.findSortedName(name, creditLimit);
     }
+
+    @RequestMapping(path = "/saveCustomers", method = RequestMethod.POST, produces={ "application/json"})
+    public ResponseEntity<Customers> saveCustomers(@RequestBody Customers customers){
+        try {
+            this.customersService.saveCustomers(customers);
+        }catch (Exception e){
+            System.out.println("msg error " + e.getMessage());
+        }
+        return new ResponseEntity<Customers>(HttpStatus.OK);
+    }
+    @RequestMapping(path = "/updateCust", method = RequestMethod.PUT, produces={ "application/json"})
+    public ResponseEntity<String> updateCust(@RequestBody Customers customers) throws Exception{
+        Customers cust = new Customers();
+        try {
+            cust = this.customersService.updateCust(customers);
+            if(cust == null){
+                return new ResponseEntity<>("update failed ", HttpStatus.BAD_REQUEST);
+            }
+        }catch (Exception e){
+            System.out.println("msg error " + e.getMessage());
+        }
+        return new ResponseEntity<>("update success "+ customers, HttpStatus.OK);
+    }
+
 }
