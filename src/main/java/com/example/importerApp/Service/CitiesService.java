@@ -41,8 +41,14 @@ public class CitiesService {
     }
 
     public Cities saveCities(Cities cities) throws Exception{
+        Cities city = new Cities();
         try {
-            this.citiesRepo.save(cities);
+            city = this.citiesRepo.getById(cities.getCityId());
+            if(city !=null){
+                return null;
+            }else {
+                this.citiesRepo.save(cities);
+            }
         }catch (Exception e){
             System.out.println("message error " + e.getMessage());
         }

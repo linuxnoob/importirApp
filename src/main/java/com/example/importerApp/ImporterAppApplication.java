@@ -18,7 +18,7 @@ public class ImporterAppApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/addCities").allowedOrigins("http://localhost:4200");
+				registry.addMapping("/**").allowedOrigins("*");
 			}
 		};
 

@@ -32,6 +32,7 @@ public class CitesController {
 
     @RequestMapping(path = "/addCities", method = RequestMethod.POST, produces = {"application/json"})
     public Cities addCities(@RequestBody  Cities cities) throws Exception{
+
         try{
             this.citiesService.saveCities(cities);
         }catch (Exception e){
