@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/supplier")
+@CrossOrigin(exposedHeaders="Access-Control-Allow-Origin",origins =  {"http://localhost:4200"})
 public class SupplierController {
 
     @Autowired
